@@ -9,5 +9,5 @@ with open(INPUT_FILE, "r") as file:
 automat = Automat(*get_config_data(CONFIG_FILE))
 
 for input in input_data.split("\n"):
-    automat.simulate_automat(input)
+    print(automat.simulate_automat(input), end = " | ")
     print(automat.is_accepted(input))

@@ -66,16 +66,17 @@ class Automat:
 
     def simulate_automat(self, input_data):
         state = self.start
+        output = ""
         for cnt, letter in enumerate(input_data[::-1]):
-            
-            if cnt == len(input_data) - 1:
-                print(state, end="\n")
-            else:
-                print(state + ' -> ', end="")
+            output += state + " -> "
 
             if letter not in self.sigma:
                 raise ValueError("Invalid input")
             state = self.transitions[letter][state]
+        
+        output += state
+
+        return output
         
     def is_accepted(self, input_data):
         state = self.start
