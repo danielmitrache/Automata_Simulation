@@ -18,7 +18,12 @@ def get_config_data(config_file):
     extracted_data = {}
 
     for key, pattern in patterns.items():
-        extracted_data[key] = re.findall(pattern, config_data, re.DOTALL)[0].strip()
+        try:
+            extracted_data[key] = re.findall(pattern, config_data, re.DOTALL)[0].strip()
+        except IndexError:
+            extracted_data[key] = None
+        if not extracted_data[key]:
+            raise ValueError(f"Invalid config file: {key} not found")
 
     # Extracting states
     states = extracted_data["states"].split(",")
@@ -64,10 +69,10 @@ class Automat:
         self.start = start
         self.final = final
 
-    def simulate_automat(self, input_data):
+    def simulate_automat(self, input_data: list | str):
         state = self.start
         output = ""
-        for cnt, letter in enumerate(input_data[::-1]):
+        for letter in input_data[::-1]:
             output += state + " -> "
 
             if letter not in self.sigma:
@@ -78,7 +83,7 @@ class Automat:
 
         return output
         
-    def is_accepted(self, input_data):
+    def is_accepted(self, input_data: list | str):
         state = self.start
         for letter in input_data[::-1]:
             if letter not in self.sigma:

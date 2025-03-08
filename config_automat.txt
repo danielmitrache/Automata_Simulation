@@ -1,11 +1,11 @@
 # Config File 
 [States] q0, q1 [/States]
-[Sigma] 0, 1 [/Sigma]
+[Sigma] 0, 11 [/Sigma]
 [Transitions]
 q0, 0, q1; 
-q0, 1, q1;
+q0, 11, q1;
 q1, 0, q0;
-q1, 1, q0;
+q1, 11, q0;
 [/Transitions]
 [Start] q0 [/Start]
 [Final] q1 [/Final]
