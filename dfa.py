@@ -29,7 +29,7 @@ class DFA:
         
     def is_accepted(self, input_data: list | str):
         state = self.start
-        for letter in input_data[::-1]:
+        for letter in input_data:
             if letter not in self.sigma:
                 return False
             
