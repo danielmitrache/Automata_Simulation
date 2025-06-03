@@ -1,0 +1,14 @@
+# Config File for PDA
+# Limbaj: 0^n 1^n (numarul de 0 este egal cu numarul de 1, iar toate 0-urile apar inaintea lui 1)
+[States] q0, q1, q2, qf [/States]
+[Sigma] e, 0, 1 [/Sigma]
+[Gamma] $, X [/Gamma]
+[Transitions]
+q0, e, e, $, q1;
+q1, 0, e, X, q1;
+q1, 1, X, e, q2;
+q2, 1, X, e, q2;
+q2, e, $, e, qf;
+[/Transitions]
+[Start] q0 [/Start]
+[Final] qf [/Final]
